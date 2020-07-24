@@ -12,10 +12,8 @@ const ArtistItem = ({ selectedArtist, song, onArtistSelect }) => {
       <ListItem
         style={{
           backgroundColor:
-            song.primary_artist.id === selectedArtist ? "lightblue" : "",
-        }}
-        button
-      >
+            song.primary_artist.id === selectedArtist ? "lightblue" : "",}}
+            button>
         <ListItemAvatar>
           <Avatar alt="Remy Sharp" src={song.primary_artist.image_url} />
         </ListItemAvatar>

@@ -16,15 +16,13 @@ class App extends React.Component {
     selectedArtist: "",
   };
   componentWillMount() {
-    genius
-      .get("/search", {
+    genius.get("/search", {
         params: {
           q: "*",
           access_token: `${ACCESSTOKEN}`,
         },
       })
       .then((response) => {
-        console.log("response recived", response.data.response.hits);
         response.data.response.hits.forEach((element) => {
           this.setState({
             songs: [...this.state.songs, element.result],
@@ -51,11 +49,7 @@ class App extends React.Component {
       msg = <h2>Please Select Artist</h2>;
     }
     let loader;
-    if (
-      this.state.artistSongs.length === 0 &&
-      this.state.selectedArtist !== ""
-    ) {
-      console.log("aaya");
+    if ( this.state.artistSongs.length === 0 && this.state.selectedArtist !== "") {
       loader = (
         <Loader
           type="Puff"
@@ -67,11 +61,7 @@ class App extends React.Component {
       );
     }
     let Initialloader;
-    if (
-      this.state.artistSongs.length === 0 &&
-      this.state.selectedArtist === ""
-    ) {
-      console.log("aaya");
+    if ( this.state.artistSongs.length === 0 && this.state.selectedArtist === "") {
       Initialloader = (
         <Loader
           type="Rings"
@@ -80,7 +70,7 @@ class App extends React.Component {
           width={400}
           timeout={3000}
         />
-      );
+        );
     }
 
     return (
@@ -102,8 +92,7 @@ class App extends React.Component {
             </div>
             <div
               className="nine wide column"
-              style={{ border: "2px solid white", margin: "10px" }}
-            >
+              style={{ border: "2px solid white", margin: "10px" }}>
               <SongList songs={this.state.artistSongs} />
               {msg}
               {loader}
